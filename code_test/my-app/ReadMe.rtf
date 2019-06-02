@@ -1,0 +1,98 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1671\cocoasubrtf400
+{\fonttbl\f0\fswiss\fcharset0 Helvetica-Bold;\f1\fswiss\fcharset0 Helvetica;\f2\fmodern\fcharset0 Courier;
+\f3\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red0\green0\blue0;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;\csgray\c0;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww17340\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\partightenfactor0
+
+\f0\b\fs24 \cf2 \expnd0\expndtw0\kerning0
+Prerequisite
+\f1\b0 \
+\cf0 \kerning1\expnd0\expndtw0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 Oracle Java 8 (as the application using 
+\f2 \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 ZonedDateTime
+\f1  to handle timezone issue\cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 )\
+Maven 3.3 or above (please update to the most updated version if there is problem in setup)\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\b \cf2 \expnd0\expndtw0\kerning0
+Working Directory 
+\f1\b0 \
+\
+\'97code_test\
+\'97\'97my-app\
+\'97\'97\'97 src\
+\'97\'97\'97 target\
+\'97\'97\'97 test_data.csv\
+\'97\'97\'97 test_output.csv\
+\'97\'97\'97 pom.xml\
+\'97\'97\'97 App.log\
+\'97\'97\'97 ReadMe.doc\
+\
+my-app - working folder to execute commands to build and run the application\
+test_data.csv - CSV for input data\
+test_outout.csv - CSV for output data\
+App.log - Log file\
+ReadMe.rtf - This file\
+pom.xml - Maven setting file\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \kerning1\expnd0\expndtw0 \
+\
+
+\f0\b How to Run the application?
+\f1\b0 \
+\
+In working folder \'93my-app\'94, \
+1. Input data to t\cf2 \expnd0\expndtw0\kerning0
+est_data.csv\cf0 \kerning1\expnd0\expndtw0 \
+2. execute command  
+\f3\fs22 \cf3 \CocoaLigature0 \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97 \'93mvn package -e\'94 to build the project
+\f1\fs24 \cf0 \CocoaLigature1 \
+3. Execute command  
+\f3\fs22 \cf3 \CocoaLigature0 \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97
+\f1\fs24 \cf0 \CocoaLigature1  \'93
+\f3\fs22 \cf3 \CocoaLigature0 java -cp target/eroad-1.0-jar-with-dependencies.jar com.code_test.App
+\f1\fs24 \cf0 \CocoaLigature1 \'93 to run the application\
+4. Verify result in \cf2 \expnd0\expndtw0\kerning0
+test_output.csv\cf0 \kerning1\expnd0\expndtw0 \
+\
+
+\f0\b Assumptions and Regulations
+\f1\b0 \
+\
+1. Information (timezone and date time) from API are always valid\
+\
+2. Due to the usage constraint from the free web service API, it will throw exception \'93daily limit of credits exceeded\'94 when reached the daily quota\cf2 \expnd0\expndtw0\kerning0
+ (1000 calls).\
+Reference \
+i. https://www.geonames.org/export/\
+ii. http://www.geonames.org/export/webservice-exception.html\
+\
+3. The program will run properly only if \
+a. Date time information provided in CSV with valid format \'93yyyy-MM-dd HH:mm:ss\'94\
+b. Valid latitude, between -90 - +90\
+c. Valid longitude, between -180 - +180\
+d. Internet connection available, able to connect to the web service API, you can test the API - \
+http://api.geonames.org/timezoneJSON?formatted=true&lat=-89.999921&lng=10.2&username=ajohnny&style=full\
+e. That location got timezone, some location like \'93lat -74.490947, long 171.220966\'94 and \'93lat -54.490947, long 171.220966\'94 do not have timezone name\
+\
+3. Conversion of local time\
+a. If timezone name available for that location, will refer to the timezone name. If timezone name is not available for that location, will refer to the raw offset provided by the web service API\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\b \cf2 Reference about \'93timezone name\'94 and \'93timezone offset\'94\
+
+\f1\b0 \
+1. https://spin.atomicobject.com/2016/07/06/time-zones-offsets/\
+2. http://tantek.com/2015/218/b1/use-timezone-offsets\
+3. https://stackoverflow.com/questions/46854760/timezone-vs-offset-to-store-user-timezone\
+\
+\
+\
+}
